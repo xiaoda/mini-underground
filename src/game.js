@@ -5,10 +5,16 @@ class Game {
     this.options = {
       ...options
     }
-    this.$canvas = $(`#${options.canvasId}`)
+  }
+
+  async init () {
+    const {canvasId} = this.options
+    this.$canvas = $(`#${canvasId}`)
     this.resizeCanvas()
-    this.stage = new createjs.Stage(this.options.canvasId)
+    this.stage = new createjs.Stage(canvasId)
     this.cityMap = new CityMap('shanghai')
+    this.cityMapData = await this.cityMap.init()
+    this.drawCityMap()
 
     $(window).resize(_ => {
       this.resizeCanvas()
@@ -21,6 +27,10 @@ class Game {
       width: $(window).width(),
       height: $(window).height()
     })
+  }
+
+  drawCityMap () {
+    console.log(this.cityMapData)
   }
 }
 

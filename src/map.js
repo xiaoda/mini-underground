@@ -1,10 +1,11 @@
 class CityMap {
   constructor (city) {
-    import(`./map/${city}.js`)
-      .then(module => {
-        const data = module.default
-        console.log(data)
-      })
+    this.options = {city}
+  }
+
+  async init () {
+    this.mapData = (await import(`./map/${this.options.city}.js`)).default
+    return this.mapData
   }
 }
 
