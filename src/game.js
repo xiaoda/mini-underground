@@ -2,7 +2,9 @@ import CityMap from './map.js'
 
 class Game {
   constructor (options = {}) {
-    this.options = {...options}
+    this.options = {
+      ...options
+    }
     this.$canvas = $(`#${options.canvasId}`)
     this.resizeCanvas()
     this.stage = new createjs.Stage(this.options.canvasId)
