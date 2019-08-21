@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mini Underground</title>
+  <style>
+    body {margin: 0;}
+    #gameCanvas {display: block;}
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+
+  <script src="libs/jquery.min.js"></script>
+  <script src="libs/create.min.js"></script>
+  <script type="module">
+    import Game from './src/game.js';
+
+    const game = new Game({
+      canvasId: 'gameCanvas'
+    })
+  </script>
+</body>
+</html>
