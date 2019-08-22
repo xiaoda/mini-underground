@@ -4,12 +4,20 @@
   <meta charset="utf-8">
   <title>Mini Underground</title>
   <style>
-    body {margin: 0;}
-    #gameCanvas {display: block;}
+    html, body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      height: 100%;
+      margin: 0;
+      background-color: #ddd;
+    }
   </style>
 </head>
 <body>
   <canvas id="gameCanvas"></canvas>
+
   <script src="libs/jquery.min.js"></script>
   <script src="libs/create.min.js"></script>
   <script type="module">
