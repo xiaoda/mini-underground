@@ -61,10 +61,24 @@ class Game {
       river.graphics
         .setStrokeStyle(riverData.width, 'round')
         .beginStroke('#a3dafd')
-      riverData.path.forEach((path, index) => {
-        const x = this._transformX(path[1])
-        const y = this._transformY(path[0])
-        index ? river.graphics.lineTo(x, y) : river.graphics.moveTo(x, y)
+      riverData.path.forEach((point, index) => {
+        const transformedPoint = [
+          this._transformX(point[1]),
+          this._transformY(point[0])
+        ]
+        if (index) {
+          const lastPoint = riverData.path[index - 1]
+          const transformedLastPoint = [
+            this._transformX(lastPoint[1]),
+            this._transformY(lastPoint[0])
+          ]
+          const curvePoint = GeometryUtils.getCurvePointBetweenPoints(
+            transformedPoint, transformedLastPoint, point[2] || 0
+          )
+          river.graphics.quadraticCurveTo(...curvePoint, ...transformedPoint)
+        } else {
+          river.graphics.moveTo(...transformedPoint)
+        }
       })
       river.x = river.y = 0
       this.stage.addChild(river)
