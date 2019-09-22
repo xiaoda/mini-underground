@@ -55,7 +55,12 @@ class Game {
       .beginFill('white')
       .drawRect(0, 0, this.canvasWidth, this.canvasHeight)
     this.stage.addChild(cityArea)
+    this.stage.update()
 
+    this.initRivers()
+  }
+
+  initRivers () {
     this.cityMapData.rivers.forEach(riverData => {
       const river = new createjs.Shape()
       river.graphics
